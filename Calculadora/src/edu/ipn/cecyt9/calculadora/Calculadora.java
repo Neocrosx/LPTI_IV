@@ -53,7 +53,7 @@ public class Calculadora extends JFrame {
 	 */
 	public Calculadora() {
 		super();
-		setSize(250, 300);
+		setSize(300, 450);
 		setTitle("Calculadora Simple");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -83,15 +83,20 @@ public class Calculadora extends JFrame {
 		panel.add("Center", panelNumeros);
 
 		panelOperaciones = new JPanel();
-		panelOperaciones.setLayout(new GridLayout(6, 1));
+		panelOperaciones.setLayout(new GridLayout(6, 2));
 		panelOperaciones.setBorder(new EmptyBorder(4, 4, 4, 4));
 
 		nuevoBotonOperacion("+");
 		nuevoBotonOperacion("-");
 		nuevoBotonOperacion("*");
 		nuevoBotonOperacion("/");
-		nuevoBotonOperacion("=");
-		nuevoBotonOperacion("CE");
+		nuevoBotonOperacion(">");
+		nuevoBotonOperacion("<");
+                nuevoBotonOperacion("√x");
+                nuevoBotonOperacion("log");
+                nuevoBotonOperacion("abs");
+                nuevoBotonOperacion("CE");
+                nuevoBotonOperacion("=");
 
 		panel.add("East", panelOperaciones);
 
@@ -192,6 +197,16 @@ public class Calculadora extends JFrame {
 			resultado /= new Double(pantalla.getText());
 		} else if (operacion.equals("*")) {
 			resultado *= new Double(pantalla.getText());
+		} else if (operacion.equals("<")) {
+                        resultado = new Double(Math.min(resultado, Double.parseDouble(pantalla.getText())));     
+		} else if (operacion.equals(">")) {
+                        resultado = new Double(Math.max(resultado, Double.parseDouble(pantalla.getText())));
+		} else if (operacion.equals("√x")) {
+                        resultado = new Double (Math.sqrt(resultado));
+		} else if (operacion.equals("log")) {
+                        resultado = new Double(Math.log(resultado));
+		} else if (operacion.equals("abs")) {
+                        resultado = Math.abs(resultado);
 		}
 
 		pantalla.setText("" + resultado);
